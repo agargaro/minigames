@@ -1,12 +1,15 @@
 {
   "compilerOptions": {
     "outDir": "dist",
-    "module": "ES2022",
-    "target": "ES2022",
-    "strict": true,
+    "module": "ESNext",
+    "target": "ESNext",
+    "strict": false,
     "noImplicitOverride": true,
     "strictNullChecks": false,
     "esModuleInterop": true,
-    "moduleResolution": "node"
-  }
+    "moduleResolution": "node",
+  },
+  // "include": [
+  //   "src/*/.ts"
+  // ]
 }

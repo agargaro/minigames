@@ -7,7 +7,7 @@ let activeGame = 'memory';
 export const audioListener = new AudioListener();
 await Asset.preloadAllPending();
 
-const main = new Main({ showStats: true, fullscreen: false, rendererParameters: { canvas: document.getElementById('canvas') } });
+const main = new Main({ showStats: false, fullscreen: false, rendererParameters: { canvas: document.getElementById('canvas') } });
 main.renderer.outputColorSpace = 'srgb-linear';
 
 const sceneMemory = new Scene().add(new Table()).activeSmartRendering();

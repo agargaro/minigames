@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato" />
+    <link rel="stylesheet" href="style.css" />
+    <title>CArd memory game</title>
+  </head>
+
+  <body>
+    <header>
+      <h1>
+        <span class="ca"><img src="CA.svg" /></span><span id="game-title">RD MEMORY GAME</span>
+      </h1>
+      <section class="window-actions">
+        <button class="window-action" id="switch-game">
+          <i class="window-action-icon">Switch game</i>
+        </button>
+      </section>
+    </header>
+
+    <main>
+      <canvas id="canvas"></canvas>
+      <section class="side">
+        <button class="action secondary" onclick="alert('suca col tempo')">
+          <i class="action-icon"><img height="40" src="./clessidra.png" /></i><span id="time-label">01:00</span>
+        </button>
+        <button class="action primary" onclick="alert('suca')">Pausa</button>
+        <button class="action primary" onclick="alert('suca')">Ricomincia</button>
+      </section>
+    </main>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

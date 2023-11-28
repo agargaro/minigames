@@ -33,10 +33,11 @@ export class Wheel extends Group {
 
     this.add(this.base, this.internal.translateZ(0.01), this.external.translateZ(0.02));
 
-    this.on('click', () => {
-      if (this._force > 0) return;
-      this._force = Math.random() * 2 + 2;
+    document.getElementById('gira').addEventListener('click', () => { 
+      this.gira();
     });
+
+    this.on('click', () => this.gira());
 
     this.on('animate', (e) => {
       if (this._force > 0) {
@@ -46,15 +47,27 @@ export class Wheel extends Group {
         if (this._force === 0) {
           if (this.checkWin()) {
             this.scene.add(new Confetti());
+            const dialog = document.getElementById('win-dialog') as HTMLDialogElement;
+            document.getElementById('win-paragraph').innerText = 'HAI VINTO!';
+            dialog.showModal();
             // this._winAudio.play();
+          } else {
+            const dialog = document.getElementById('win-dialog') as HTMLDialogElement;
+            document.getElementById('win-paragraph').innerText = 'Non hai vinto...';
+            dialog.showModal(); //OPT
           }
         }
       }
     });
   }
 
+  public gira(): void {
+    if (this._force > 0) return;
+    this._force = Math.random() * 2 + 2;
+  }
+
   public checkWin(): boolean {
-    const winningAngle = (10 * Math.PI) / -180;
+    const winningAngle = (9.75 * Math.PI) / -180;
     const module = this.internal.material.rotation % Math.PI;
     const angle = module > -Math.PI / 2 ? module : -Math.PI - module;
     return angle >= winningAngle;

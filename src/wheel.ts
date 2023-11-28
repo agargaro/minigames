@@ -45,16 +45,14 @@ export class Wheel extends Group {
         this.needsRender = true;
         this._force = Math.max(this._force - e.delta, 0);
         if (this._force === 0) {
+          const dialog = document.getElementById('win-dialog') as HTMLDialogElement;
+          dialog.showModal();
           if (this.checkWin()) {
             this.scene.add(new Confetti());
-            const dialog = document.getElementById('win-dialog') as HTMLDialogElement;
             document.getElementById('win-paragraph').innerText = 'HAI VINTO!';
-            dialog.showModal();
             // this._winAudio.play();
           } else {
-            const dialog = document.getElementById('win-dialog') as HTMLDialogElement;
             document.getElementById('win-paragraph').innerText = 'Non hai vinto...';
-            dialog.showModal(); //OPT
           }
         }
       }

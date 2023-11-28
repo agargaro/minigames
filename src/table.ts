@@ -13,11 +13,42 @@ export class Table extends Group {
   private _isAnimating = false;
   private _cardsLeft: number;
   private _winAudio: Audio;
+  private _timeRunning = false;
+  private _timeRimasto = 60;
 
   constructor() {
     super();
     this._winAudio = new Audio(audioListener).setBuffer(Asset.get('assets/win.mp3'));
     this.bindProperty('enabled', () => !this._isAnimating);
+    this.start();
+
+    this.on('animate', (e) => {
+      if (this._timeRunning) this._timeRimasto -= e.delta;
+      document.getElementById('timer').innerText = Math.ceil(this._timeRimasto).toString();
+      if (this._timeRimasto <= 0) {
+        const dialog = document.getElementById('win-dialog') as HTMLDialogElement;
+        dialog.showModal();
+        document.getElementById('win-paragraph').innerText = 'Non hai vinto...';
+        this.reset();
+      }
+    });
+
+    document.getElementById('reset').addEventListener('click', () => {
+      this.reset();
+    });
+  }
+
+  private reset(): void {
+    this._timeRunning = false;
+    this._timeRimasto = 60;
+    this.firstCard = undefined;
+    this.secondCard = undefined;
+    this._isAnimating = false;
+
+    for (let i = this.children.length - 1; i >= 0; i--) {
+      this.children[i].removeFromParent();
+    }
+
     this.start();
   }
 
@@ -46,6 +77,7 @@ export class Table extends Group {
   }
 
   private onClick(e: PointerEventExt): void {
+    this._timeRunning = true;
     const card = e.currentTarget as Card;
 
     if (!this.firstCard) this.firstCard = card;
@@ -89,7 +121,12 @@ export class Table extends Group {
       this.scene.add(new Confetti());
       this._winAudio.play();
 
-      setTimeout(() => this.start(), 5000);
+      const dialog = document.getElementById('win-dialog') as HTMLDialogElement;
+      dialog.showModal();
+      document.getElementById('win-paragraph').innerText = 'HAI VINTO!';
+      this._timeRunning = false;
+
+      setTimeout(() => this.reset(), 5000);
     }
   }
 }

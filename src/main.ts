@@ -25,14 +25,26 @@ document.getElementById('switch-game').addEventListener('change', (event) => {
   if (activeGame === 'wheel') {
     document.getElementById('pausa').style.display = 'none';
     document.getElementById('reset').style.display = 'none';
-    document.getElementById('timer').style.display = 'none';
+    document.getElementById('timer-btn').style.display = 'none';
     document.getElementById('gira').style.display = 'block';
     document.getElementById('game-title').innerText = 'WHEEL OF FORTUNE';
   } else {
     document.getElementById('pausa').style.display = 'block';
     document.getElementById('reset').style.display = 'block';
-    document.getElementById('timer').style.display = 'block';
+    document.getElementById('timer-btn').style.display = 'block';
     document.getElementById('gira').style.display = 'none';
     document.getElementById('game-title').innerText = 'RD MEMORY GAME';
+  }
+});
+
+document.getElementById('pausa').addEventListener('click', function() {
+  if (this.innerText === 'Pausa') {
+    this.innerText = 'Riprendi';
+    sceneMemory.scene.interceptByRaycaster = false;
+    sceneMemory.timeScale = 0;
+  } else {
+    this.innerText = 'Pausa';
+    sceneMemory.scene.interceptByRaycaster = true;
+    sceneMemory.timeScale = 1;
   }
 });

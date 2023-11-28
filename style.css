@@ -120,6 +120,14 @@ canvas {
   transform: scale(0.95);
 }
 
+.action[disabled] {
+  cursor: default;
+}
+
+.action[disabled]:active {
+  transform: scale(1);
+}
+
 .action > .action-icon {
   background: url('asdfasdfsdafds.png');
   position: absolute;

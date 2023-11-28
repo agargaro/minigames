@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato" />
     <link rel="stylesheet" href="style.css" />
-    <title>CArd memory game</title>
+    <title>CA games</title>
   </head>
 
   <body>
@@ -23,11 +23,11 @@
     <main>
       <canvas id="canvas"></canvas>
       <section class="side">
-        <button class="action secondary" onclick="alert('suca col tempo')">
+        <button id="timer" disabled class="action secondary">
           <i class="action-icon"><img height="40" src="./clessidra.png" /></i><span id="time-label">01:00</span>
         </button>
-        <button class="action primary" onclick="alert('suca')">Pausa</button>
-        <button class="action primary" onclick="alert('suca')">Ricomincia</button>
+        <button id="pausa" class="action primary" onclick="alert('suca')">Pausa</button>
+        <button id="reset" class="action primary" onclick="alert('suca')">Ricomincia</button>
       </section>
     </main>
     <script type="module" src="/src/main.ts"></script>

@@ -1,0 +1,71 @@
+dialog {
+  margin: auto;
+  width: 500px;
+  height: 300px;
+  border: 3px solid var(--primary);
+  color: var(--on-background);
+  background: linear-gradient(
+    to bottom,
+    var(--background, #171c27),
+    var(--light-background, #24263a)
+  );
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  transition: transform 0.5 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  padding: 30px;
+}
+
+dialog[open] {
+  visibility: visible;
+  transform: scale(1.2);
+}
+
+dialog::backdrop {
+  background-color: #171c27af;
+}
+
+.dialog-actions {
+  position: absolute;
+  top: 0;
+  right: 8px;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+}
+
+.dialog-action {
+  height: 100%;
+  width: 1em;
+  position: relative;
+  background: none;
+  border: none;
+  color: var(--in-background);
+  font-size: 1.4em;
+  transition: opacity ease-in-out 70ms;
+  cursor: pointer;
+}
+
+.dialog-action:hover {
+  opacity: 0.5;
+}
+
+.dialog-action > .dialog-action-icon {
+  position: absolute;
+  font-style: normal;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+.dialog-body {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.win-paragraph {
+  font-size: 4em;
+}

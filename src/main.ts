@@ -18,8 +18,8 @@ const sceneWheel = new Scene().add(new Wheel()).activeSmartRendering();
 const cameraWheel = new OrthographicCameraAuto(5, false).translateZ(10);
 main.createView({ scene: sceneWheel, camera: cameraWheel, backgroundColor: 0x59a59c, visible: false, tags: ['wheel'] });
 
-document.getElementById('switch-game').addEventListener('click', () => {
-  activeGame = activeGame === 'memory' ? 'wheel' : 'memory';
+document.getElementById('switch-game').addEventListener('change', (event) => {
+  activeGame = (event.target as HTMLInputElement).value;
   main.setActiveViewsByTag(activeGame);
 
   if (activeGame === 'wheel') {

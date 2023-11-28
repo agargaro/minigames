@@ -13,7 +13,7 @@ export class Wheel extends Group {
 
   constructor() {
     super();
-    this.position.y += 0.4;
+    this.position.y += 0.15;
 
     this.internal.interceptByRaycaster = false;
     const internalImg = this.internal.material.map.image;
@@ -44,9 +44,9 @@ export class Wheel extends Group {
         this.needsRender = true;
         this._force = Math.max(this._force - e.delta, 0);
         if (this._force === 0) {
-          this.internal.material.rotation %= Math.PI * 2;
           if (this.checkWin()) {
             this.scene.add(new Confetti());
+            // this._winAudio.play();
           }
         }
       }
@@ -54,9 +54,9 @@ export class Wheel extends Group {
   }
 
   public checkWin(): boolean {
-    const winningAngle = (9.75 * Math.PI) / -180;
+    const winningAngle = (10 * Math.PI) / -180;
     const module = this.internal.material.rotation % Math.PI;
     const angle = module > -Math.PI / 2 ? module : -Math.PI - module;
-    return angle > winningAngle;
+    return angle >= winningAngle;
   }
 }

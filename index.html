@@ -3,8 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato" />
+    <link rel="stylesheet"  href="https://fonts.googleapis.com/css?family=Lato" />
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="toggle.css" />
+    <link rel="stylesheet" href="dialog.css" />
     <title>CA games</title>
   </head>
 
@@ -13,23 +15,58 @@
       <h1>
         <span class="ca"><img src="CA.svg" /></span><span id="game-title">RD MEMORY GAME</span>
       </h1>
-      <section class="window-actions">
-        <button class="window-action" id="switch-game">
-          <i class="window-action-icon">Switch game</i>
-        </button>
-      </section>
+      <form id="switch-game" class="toggle-container">
+        <input
+          id="toggle-on"
+          class="toggle toggle-left"
+          name="toggle"
+          value="memory"
+          type="radio"
+          checked
+        />
+        <label for="toggle-on" class="btn"> CARD MEMORY </label>
+        <input
+          id="toggle-off"
+          class="toggle toggle-right"
+          name="toggle"
+          value="wheel"
+          type="radio"
+        />
+        <label for="toggle-off" class="btn">WHEEL OF FORTUNE</label>
+      </form>
     </header>
 
     <main>
       <canvas id="canvas"></canvas>
       <section class="side">
-        <button id="timer" disabled class="action secondary">
-          <i class="action-icon"><img height="40" src="./clessidra.png" /></i><span id="time-label">01:00</span>
+        <button class="action secondary">
+          <i class="action-icon"><img height="40" src="./clessidra.png" /></i
+          ><span id="time-label">01:00</span>
         </button>
-        <button id="pausa" class="action primary" onclick="alert('suca')">Pausa</button>
-        <button id="reset" class="action primary" onclick="alert('suca')">Ricomincia</button>
+        <button class="action primary">Pausa</button>
+        <button class="action primary>
+          Ricomincia
+        </button>
       </section>
     </main>
     <script type="module" src="/src/main.ts"></script>
+    <dialog id="win-dialog">
+      <div class="dialog-body">
+        <p id="win-paragraph" class="win-paragraph">HAI VINTO!</p>
+      </div>
+      <form method="dialog" class="dialog-actions">
+        <button class="dialog-action" type="submit">
+          <i class="dialog-action-icon" style="top: 0.1em">✕</i>
+        </button>
+      </form>
+    </dialog>
+    <button id="open-button">open</button>
+    <script>
+      let dialog = document.getElementById('win-dialog');
+      let button = document.getElementById('open-button');
+      button.addEventListener('click', function () {
+        dialog.showModal();
+      });
+    </script>
   </body>
 </html>

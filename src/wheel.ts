@@ -33,7 +33,7 @@ export class Wheel extends Group {
 
     this.add(this.base, this.internal.translateZ(0.01), this.external.translateZ(0.02));
 
-    document.getElementById('gira').addEventListener('click', () => { 
+    document.getElementById('gira').addEventListener('click', () => {
       this.gira();
     });
 
@@ -65,9 +65,10 @@ export class Wheel extends Group {
   }
 
   public checkWin(): boolean {
-    const winningAngle = (9.75 * Math.PI) / -180;
-    const module = this.internal.material.rotation % Math.PI;
-    const angle = module > -Math.PI / 2 ? module : -Math.PI - module;
-    return angle >= winningAngle;
+    const spicchioSize = (Math.PI * 2) / 18;
+    const winIndex = [0, 1, 2, 5, 6, 7, 11, 12, 13, 16, 17];
+    const module = (this.internal.material.rotation + spicchioSize / 2) % (Math.PI * 2);
+    const index = Math.trunc(((Math.PI * 2) + module) / spicchioSize);
+    return winIndex.indexOf(index) >= 0;
   }
 }
